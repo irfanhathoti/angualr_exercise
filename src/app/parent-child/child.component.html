@@ -1,0 +1,40 @@
+<p>child works!</p>
+<table class="table table-striped table-hover table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Order ID</th>
+
+            <th>Order Date</th>
+
+            <th>SalesRep Id</th>
+
+        </tr>
+
+    </thead>
+
+
+
+   
+
+    <tbody>
+
+        <!-- pipe(|) -->
+
+        <tr *ngFor="let ord of customerChild  | categoryfilter : productId ">
+
+            <!-- interpoulation{{}} -->
+
+            <td>{{ord.categoryId}}</td>
+
+            <td>{{ord.categoryDate| date :'dd/MM/yyyy' }}</td>
+
+            <td>{{ord.productId}}</td>
+
+        </tr>
+
+    </tbody>
+
+</table>

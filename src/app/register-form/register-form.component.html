@@ -1,0 +1,75 @@
+<form #registerDetail="ngForm" (ngSubmit)="handleSubmit()" class="container">
+    <div>
+        <label for=""> Name: </label>
+        <input class="form-control w-25 p-1" type="text" name="name" [(ngModel)]="registerForm.name" #name="ngModel"
+            pattern="^[a-zA-Z\s]*$" maxlength="10" required>
+        <div *ngIf="(name.touched || name.dirty ||registerDetail.submitted) && (name.invalid)"
+            class="alert alert-danger w-25 p-1">
+            <div *ngIf="name.errors?.['required']">Name required</div>
+            <div *ngIf="name.errors?.['pattern']">
+                Please Enter Valide Name
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for=""> Email: </label>
+        <input class="form-control w-25 p-1" type="text" name="email" [(ngModel)]="registerForm.email " required
+            #email='ngModel' pattern="[a-z0-9-.]+@(?=.*htcindia)([a-z])+\.[a-z]{2,3}$">
+        <div *ngIf="(email.touched || email.dirty || registerDetail.submitted) && ( email.invalid)"
+            class="alert alert-danger w-25 p-1">
+            <div *ngIf="email.errors?.['required']"> Email is required </div>
+            <div *ngIf="email.errors?.['pattern']">
+                Please Enter Valide Email
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for=""> Contact: </label>
+        <input class="form-control w-25 p-1" type="text" name="contact" #contact='ngModel'
+            [(ngModel)]="registerForm.contact" required pattern="^[0-9]*$" maxlength="10">
+        <div *ngIf="(contact.touched || contact.dirty || registerDetail.submitted ) && (contact.invalid) "
+            class="alert alert-danger w-25 p-1">
+            <div *ngIf="contact.errors?.['required']">
+                Contact is required
+            </div>
+            <div *ngIf="contact.errors?.['pattern' ]">
+                Please Enter Valid Contact Number
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for=""> Password: </label>
+        <input class="form-control w-25 p-1" type="text" name="password" #password='ngModel'
+            [(ngModel)]="registerForm.password" required minlength="4" maxlength="12"
+            pattern="^(?=.*\d)([a-zA-Z\d]){4,12}$">
+        <div *ngIf="(password.touched || password.dirty || registerDetail.submitted) && password.invalid "
+            class="alert alert-danger w-25 p-1">
+            <div *ngIf="password.errors?.['required']">
+                Password is required
+            </div>
+            <div *ngIf="password.errors?.['pattern']">
+                Pleasse Enter Valid Password
+                <br>
+                Password should be alphanumaric 
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <label for=""> Confirm Password: </label>
+        <input class="form-control w-25 p-1" type="text" name="cpassword" #cpassword = "ngModel" [(ngModel)]="registerForm.cpassword" required>
+        <div *ngIf="(cpassword.touched)" class="alert alert-danger">
+            <div *ngIf="cpassword.errors?.['required'] || registerDetail.submitted">
+                Confirm password required
+            </div>
+            <div *ngIf="cpassword!==password" >
+                password does not matched
+            </div>
+            <div></div>
+        </div>
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="me-md-2 btn btn-outline-success">Submitt</button>
+        <button type="reset" class="btn btn-outline-warning">Reset</button>
+    </div>
+</form>

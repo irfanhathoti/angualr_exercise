@@ -1,0 +1,81 @@
+<h2>Attendence List</h2>
+
+
+<p-table [value]=attendence responsiveLayout="scroll">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>RegNo</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>FullName</th>
+            <th>Present</th>
+            <th>Absent</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-stu>
+        <tr>
+            <td> {{stu.RegNo}} </td>
+            <td> {{stu.firstName}} </td>
+            <td> {{stu.lastName}} </td>
+            <td> {{stu.fullName()}} </td>
+            <td> <input type="checkbox" name="" id=""> {{stu.present}} </td>
+            <td> <input type="checkbox"> {{stu.absent}} </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+ <h2> Approvel List </h2>
+<select [(ngModel)]="selectStatus">
+    <option *ngFor="let batch of status" [value]=" batch"> {{batch}} </option>
+</select>
+
+<p-table [value]=attendence responsiveLayout="scroll">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SlNo</th>
+            <th>Date</th>
+            <th>No of Student Present</th>
+            <th> No of Student Absent </th>
+            <th>Status</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-stu>
+        <tr *ngIf="stu.status == selectStatus">
+            <td> {{stu.slNo}} </td>
+            <td> {{stu.date}} </td>
+            <td> {{stu.NoofStup}} </td>
+            <td> {{stu.Noofstua}} </td>
+            <td> {{stu.status}} </td>
+        </tr>
+    </ng-template>
+</p-table>
+<h2> Student Details </h2>
+<p-table [value]=attendence responsiveLayout="scroll">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>RegNo</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>FullName</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-stu>
+        <tr>
+            <td> {{stu.RegNo }} </td>
+            <td> {{stu.firstName |titlecase}} </td>
+            <td> {{stu.lastName |lowercase}} </td>
+            <td> {{stu.fullName()|uppercase}} </td>
+        </tr>
+    </ng-template>
+</p-table> 
+
+
+
+
+

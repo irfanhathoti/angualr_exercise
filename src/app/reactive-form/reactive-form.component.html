@@ -1,0 +1,78 @@
+<p class="title">Reactive Form Example</p>
+
+<form [formGroup]="contactForm" #registerForm="ngForm" id="form" (ngSubmit)="addContact()">
+    <div class="form-group">
+        <label>Contact Name : </label>
+        <input type="text" pInputText name="contactName" class="p-inputtext" formControlName="contactName" />
+        <div *ngIf="contactForm.controls['contactName'].hasError('required') && (contactForm.controls['contactName'].touched|| contactForm.controls['contactName'].dirty || registerForm.submitted  )"
+            class="alert alert-danger">
+            Enter the name
+            <div
+                *ngIf="contactForm.controls['contactName'].hasError('pattern') && (contactForm.controls['contactName'].touched|| contactForm.controls['contactName'].dirty || registerForm.submitted  )">
+                Enter the valid name
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Designation : </label>
+        <select name="Designation" class="form-select" formControlName="designation">
+            <option value="--Choose--">--Choose Designation--</option>
+            <option *ngFor="let designation of designations">{{designation}}</option>
+            <!-- <p-dropdown [options]="designations" name="event" formControlName="designation"></p-dropdown> -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Organization : </label>
+        <input type="text" name="organization" pInputText class="p-inputtext" formControlName="organization" />
+        <div *ngIf="contactForm.controls['organization'].hasError('required') && (contactForm.controls['organization'].touched|| contactForm.controls['organization'].dirty || registerForm.submitted  )"
+            class="alert alert-danger">
+            Organization is required
+            <div
+                *ngIf="contactForm.controls['organization'].hasError('pattern') && (contactForm.controls['organization'].touched|| contactForm.controls['organization'].dirty || registerForm.submitted  )">
+                Enter the valid Organization
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>City : </label>
+        <input type="text" name="city" pInputText class="p-inputtext" formControlName="city" />
+        <div *ngIf="contactForm.controls['city'].hasError('required') && (contactForm.controls['city'].touched|| contactForm.controls['city'].dirty || registerForm.submitted  )"
+            class="alert alert-danger">
+            city is required
+            <div
+                *ngIf="contactForm.controls['city'].hasError('pattern') && (contactForm.controls['city'].touched|| contactForm.controls['city'].dirty || registerForm.submitted  )">
+                Enter the valid city
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label>Email : </label>
+        <input type="text" name="email" pInputText class="p-inputtext" formControlName="email" />
+        <div *ngIf="contactForm.controls['email'].hasError('required') && (contactForm.controls['email'].touched|| contactForm.controls['email'].dirty || registerForm.submitted  )"
+            class="alert alert-danger">
+            email is required
+            <div
+                *ngIf="contactForm.controls['email'].hasError('pattern') && (contactForm.controls['email'].touched|| contactForm.controls['email'].dirty || registerForm.submitted  )">
+                Enter the valid email
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Mobile : </label>
+        <input type="text" name="mobile" pInputText class="p-inputtext" formControlName="mobile" />
+        <div *ngIf="contactForm.controls['mobile'].hasError('required') && (contactForm.controls['mobile'].touched|| contactForm.controls['mobile'].dirty || registerForm.submitted  )"
+            class="alert alert-danger">
+            number is required
+            <div
+                *ngIf="contactForm.controls['mobile'].hasError('pattern') && (contactForm.controls['mobile'].touched|| contactForm.controls['mobile'].dirty || registerForm.submitted  )">
+                Enter the valid number
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Add</button>
+        <button type="reset" class="btn btn-primary">Clear</button>
+    </div>
+</form>

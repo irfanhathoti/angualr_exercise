@@ -1,0 +1,37 @@
+<form #loginform="ngForm" (ngSubmit)="Login()">
+    <h1>valid: {{loginform.valid}} </h1>
+    <p> pristine: {{loginform.pristine}} <br>
+        Touched :{{loginform.touched}} <br>
+        Dirty : {{loginform.dirty}}
+    </p>
+    <div class="form-group">
+        <label for="">Email: </label>
+        <input type="text" name="email" class="form-control" [(ngModel)]="LogingForm.email" #formEmail="ngModel"
+            required pattern="^[a-z][^\s@]+@[^\s@]+\.[^\s@]{2,}$">
+        <div class="alert alert-danger" *ngIf="(formEmail.touched || formEmail.dirty) &&  formEmail.invalid ||loginform.submitted ">
+            <div *ngIf="formEmail.errors?.['required']">
+                Email required
+            </div>
+            <div *ngIf="formEmail.errors?.['pattern']">
+                Enter valid Email
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Password: </label>
+        <input type="password" name="password" class="form-control" [(ngModel)]="LogingForm.password"
+            #loginPassword='ngModel' required minlength="4" maxlength="10" pattern="^(?=.*[A-Za-z])[A-Za-z\d]{10}$" >
+        <div class="alert alert-danger" *ngIf="(loginPassword.touched &&  loginPassword.invalid)||loginform.submitted ">
+            <div *ngIf="loginPassword.errors?.['required']">
+                Password required
+            </div>
+            <div *ngIf="loginPassword.errors?.['minlength']">
+                minimum 4 charecter
+            </div>
+            <div *ngIf="loginPassword.errors?.['pattern'] ">
+                Please Enter Valide Password
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary"> Login </button>
+</form>

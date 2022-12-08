@@ -1,0 +1,46 @@
+<p>parent works!</p>
+<!-- <p>parent works!</p> -->
+
+<style>
+    table {
+
+        display: inline;
+
+        position: relative;
+
+        left: 150px;
+
+    }
+</style>
+
+<h2>Choose Sales Representative</h2>
+
+<div class="row">
+
+    <table style="border: 1px solid black; padding: 10px;" *ngFor="let product of products">
+
+        <th class="col">
+
+            <input type="radio" name="productId" (change)="onproductIdSelected(product)" [value]="product.productId">
+            &nbsp; {{product.productId}} <br> &nbsp;&nbsp;&nbsp; {{product.productname }}
+        </th>
+    </table>
+
+</div>
+
+
+
+
+<div class="row">
+
+    <div class="col-xs-12">
+
+        <app-child [productId]="productId"></app-child>
+
+        <!-- <app-child [producId]="productId"></app-child> -->
+
+    </div>
+
+
+
+</div>
